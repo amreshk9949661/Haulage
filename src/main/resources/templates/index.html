@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Form</title>
+    <style>
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: bold;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .form-submit {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .unit-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .unit-container label {
+            flex-basis: 120px;
+        }
+        .unit-container select {
+            width: 150px;
+        }
+        .unit-container button {
+            margin-top: 10px;
+        }
+
+        .shipment-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .shipment-container label {
+            flex-basis: 150px;
+        }
+        .shipment-container select,
+        .shipment-container input[type="text"] {
+            width: 200px;
+        }
+        .shipment-container textarea {
+            width: 100%;
+        }
+        .shipment-container button {
+            margin-top: 10px;
+        }
+
+        .charges-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .charges-container label {
+            flex-basis: 150px;
+        }
+        .charges-container select,
+        .charges-container input[type="text"] {
+            width: 200px;
+        }
+        .charges-container button {
+            margin-top: 10px;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form th:action="@{/saveBooking}" method="post">
+            <div class="form-group">
+                <label class="form-label" for="bookingDate">Booking Date:</label>
+                <input class="form-input" type="date" id="bookingDate" name="bookingDate">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="searchReceiver">Search Receiver:</label>
+                <input class="form-input" type="text" id="searchReceiver" name="searchReceiver">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="searchClient">Search Client:</label>
+                <input class="form-input" type="text" id="searchClient" name="searchClient">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Save Receiver:</label>
+                <input type="radio" id="saveYes" name="saveReceiver" value="yes">
+                <label for="saveYes">Yes</label>
+                <input type="radio" id="saveNo" name="saveReceiver" value="no">
+                <label for="saveNo">No</label>
+            </div>
+            
+        </form>
+
+        
+    <div class="container">
+        <h2>Sender/Consignee Details</h2>
+        <form th:action="@{/submitDetails}" method="post">
+            <div class="form-group">
+                <label for="senderName">Name:</label>
+                <input type="text" id="senderName" name="senderName" required>
+            </div>
+            <div class="form-group">
+                <label for="mobileNo">Mobile No:</label>
+                <input type="text" id="mobileNo" name="mobileNo" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="addressLine1">Address Line 1:</label>
+                <input type="text" id="addressLine1" name="addressLine1" required>
+            </div>
+            <div class="form-group">
+                <label for="addressLine2">Address Line 2:</label>
+                <input type="text" id="addressLine2" name="addressLine2">
+            </div>
+            <div class="form-group">
+                <label for="country">Country:</label>
+                <select id="country" name="country" required>
+                    <option value="USA">USA</option>
+                    <option value="Canada">Canada</option>
+                    <!-- Add more countries as needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="state">State:</label>
+                <select id="state" name="state" required>
+                    <option value="New York">New York</option>
+                    <option value="California">California</option>
+                    <!-- Add more states as needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="district">District:</label>
+                <select id="district" name="district" required>
+                    <option value="Manhattan">Manhattan</option>
+                    <option value="Brooklyn">Brooklyn</option>
+                    <!-- Add more districts as needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="pincode">Pincode/ZipCode:</label>
+                <input type="text" id="pincode" name="pincode" required>
+            </div>
+            
+        </form> 
+    </div> 
+    <div class="container">
+        <h2>Receiver/Consignee Details</h2>
+        <form th:action="@{/submitDetails}" method="post">
+            <div class="form-group">
+                <label for="senderName">Name:</label>
+                <input type="text" id="senderName" name="senderName" required>
+            </div>
+            <div class="form-group">
+                <label for="mobileNo">Mobile No:</label>
+                <input type="text" id="mobileNo" name="mobileNo" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="addressLine1">Address Line 1:</label>
+                <input type="text" id="addressLine1" name="addressLine1" required>
+            </div>
+            <div class="form-group">
+                <label for="addressLine2">Address Line 2:</label>
+                <input type="text" id="addressLine2" name="addressLine2">
+            </div>
+            <div class="form-group">
+                <label for="country">Country:</label>
+                <select id="country" name="country" required>
+                    <option value="USA">USA</option>
+                    <option value="Canada">Canada</option>
+                    <!-- Add more countries as needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="state">State:</label>
+                <select id="state" name="state" required>
+                    <option value="New York">New York</option>
+                    <option value="California">California</option>
+                    <!-- Add more states as needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="district">District:</label>
+                <select id="district" name="district" required>
+                    <option value="Manhattan">Manhattan</option>
+                    <option value="Brooklyn">Brooklyn</option>
+                    <!-- Add more districts as needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="pincode">Pincode/ZipCode:</label>
+                <input type="text" id="pincode" name="pincode" required>
+            </div>
+           
+        </form>
+        
+          <div th:fragment="unitConversionForm">
+            <form th:object="${unitConversion}" method="post">
+                <h2>Unit Conversion</h2>
+                <div class="unit-container">
+                    <label for="changeUnit">Change Unit(s):</label>
+                    <input type="text" id="changeUnit" name="changeUnit" th:field="*{changeUnit}"/>
+    
+                    <label for="weightUnit">Weight Unit:</label>
+                    <select id="weightUnit" name="weightUnit" th:field="*{weightUnit}">
+                        <option value="kg">Kilograms (kg)</option>
+                        <option value="lbs">Pounds (lbs)</option>
+                        <!-- Add more weight units as needed -->
+                    </select>
+    
+                    <label for="lengthUnit">Length Unit:</label>
+                    <select id="lengthUnit" name="lengthUnit" th:field="*{lengthUnit}">
+                        <option value="m">Meters (m)</option>
+                        <option value="ft">Feet (ft)</option>
+                        <!-- Add more length units as needed -->
+                    </select>
+    
+                    <label for="volumeUnit">Volume Unit:</label>
+                    <select id="volumeUnit" name="volumeUnit" th:field="*{volumeUnit}">
+                        <option value="l">Liters (l)</option>
+                        <option value="gal">Gallons (gal)</option>
+                        <!-- Add more volume units as needed -->
+                    </select>
+    
+                    <label for="distanceUnit">Distance Unit:</label>
+                    <select id="distanceUnit" name="distanceUnit" th:field="*{distanceUnit}">
+                        <option value="km">Kilometers (km)</option>
+                        <option value="mi">Miles (mi)</option>
+                        <!-- Add more distance units as needed -->
+                    </select>
+    
+                  
+                </div>
+            </form>
+        </div>
+
+
+        <div th:fragment="shipmentDetailsForm">
+            <form th:object="${shipment}" method="post">
+                <h2>Shipment Details</h2>
+                <div class="shipment-container">
+                    <label for="courierMode">Courier Mode:</label>
+                    <select id="courierMode" name="courierMode" th:field="*{courierMode}">
+                        <option value="air">Air</option>
+                        <option value="ground">Ground</option>
+                        <option value="sea">Sea</option>
+                        <!-- Add more courier modes as needed -->
+                    </select>
+    
+                    <label for="consignmentType">Consignment Type:</label>
+                    <select id="consignmentType" name="consignmentType" th:field="*{consignmentType}">
+                        <option value="documents">Documents</option>
+                        <option value="parcel">Parcel</option>
+                        <!-- Add more consignment types as needed -->
+                    </select>
+    
+                    <label for="hazardousMaterial">Hazardous Material:</label>
+                    <select id="hazardousMaterial" name="hazardousMaterial" th:field="*{hazardousMaterial}">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+    
+                    <label for="courierCenter">Courier Center:</label>
+                    <select id="courierCenter" name="courierCenter" th:field="*{courierCenter}">
+                        <option value="center1">Courier Center 1</option>
+                        <option value="center2">Courier Center 2</option>
+                        <!-- Add more courier centers as needed -->
+                    </select>
+    
+                    <label for="consignmentDescription">Consignment Description:</label>
+                    <select id="consignmentDescription" name="consignmentDescription" th:field="*{consignmentDescription}">
+                        <option value="fragile">Fragile</option>
+                        <option value="non-fragile">Non-Fragile</option>
+                        <!-- Add more consignment descriptions as needed -->
+                    </select>
+    
+                    <label for="eWayBillNo">eWay Bill No:</label>
+                    <input type="text" id="eWayBillNo" name="eWayBillNo" th:field="*{eWayBillNo}"/>
+    
+                    <label for="noOfPieces">No Of Pieces:</label>
+                    <input type="number" id="noOfPieces" name="noOfPieces" th:field="*{noOfPieces}"/>
+    
+                    <label for="explanation">Explain:</label>
+                    <textarea id="explanation" name="explanation" th:field="*{explanation}"></textarea>
+    
+                    <label for="distance">Distance:</label>
+                    <input type="number" id="distance" name="distance" th:field="*{distance}"/>
+    
+                   
+                </div>
+            </form>
+        </div>
+
+
+        <div th:fragment="chargesDetailsForm">
+            <form th:object="${charges}" method="post">
+                <h2>Charges Details</h2>
+                <div class="charges-container">
+                    <label for="charges">Charges:</label>
+                    <input type="text" id="charges" name="charges" th:field="*{charges}"/>
+    
+                    <label for="finalCharges">Final Charges:</label>
+                    <input type="text" id="finalCharges" name="finalCharges" th:field="*{finalCharges}"/>
+    
+                    <label for="tax">Tax:</label>
+                    <select id="tax" name="tax" th:field="*{tax}">
+                        <option value="gst">GST</option>
+                        <option value="vat">VAT</option>
+                        <!-- Add more tax options as needed -->
+                    </select>
+    
+                    <label for="taxPercentage">Tax %:</label>
+                    <select id="taxPercentage" name="taxPercentage" th:field="*{taxPercentage}">
+                        <option value="5">5%</option>
+                        <option value="10">10%</option>
+                        <!-- Add more tax percentage options as needed -->
+                    </select>
+    
+                    <label for="discountType">Discount Type:</label>
+                    <select id="discountType" name="discountType" th:field="*{discountType}">
+                        <option value="fixed">Fixed Amount</option>
+                        <option value="percentage">Percentage</option>
+                        <!-- Add more discount type options as needed -->
+                    </select>
+    
+                    <label for="discount">Discount:</label>
+                    <input type="text" id="discount" name="discount" th:field="*{discount}"/>
+    
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+  
+    </div>
+</body>
+</html>
